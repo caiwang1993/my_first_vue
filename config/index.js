@@ -1,9 +1,11 @@
 'use strict'
+
+//这个文件主要是对开发环境和生产环境的一个基本的配置
+
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
-//这个文件主要是对开发环境和生产环境的一个基本的配置
+//引入node.js的path模块，用于操作路径
 const path = require('path')
-
 module.exports = {
   //开发环境的基本配置
   dev: {
@@ -62,12 +64,16 @@ module.exports = {
 
   build: {
     // Template for index.html
+    //html生成的地方
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
+    //编译生成的文件目路
     assetsRoot: path.resolve(__dirname, '../dist'),
+   //编译生成静态文件的目录
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    //编译发布的根目录，可配置为资源服务器域名或者cdn域名
+    assetsPublicPath: './',
 
     /**
      * Source Maps
@@ -81,13 +87,16 @@ module.exports = {
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
+    //是否开启生产环境的gzip压缩
     productionGzip: false,
+    //开启gzip压缩文件的后缀名称
     productionGzipExtensions: ['js', 'css'],
 
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
+    //如果这个选项为true的话，那么这会在build后，会在浏览器生成一份bundler报告
     bundleAnalyzerReport: process.env.npm_config_report
   }
 }

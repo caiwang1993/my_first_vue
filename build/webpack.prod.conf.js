@@ -1,31 +1,54 @@
 'use strict'
-const path = require('path')
-const utils = require('./utils')
-const webpack = require('webpack')
-const config = require('../config')
-const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
+//prod环境的基本配置
+// 引入path模块
+const path = require('path')
+// 引入工具方法
+const utils = require('./utils')
+// 引入webpack模块
+const webpack = require('webpack')
+// 引入基本的配置
+const config = require('../config')
+// 引入webpack-merge模块
+const merge = require('webpack-merge')
+// 引入开发环境和生产环境公共的配置
+const baseWebpackConfig = require('./webpack.base.conf')
+// 引入copy-webpack-plugin模块
+// 这个模块主要用于在webpack中拷贝文件和文件夹
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+// 引入html-webpack-plugin插件
+// 这个插件主要是用于基于模版生成html文件的
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+// 引入extract-text-webpack-plugin插件
+// 这个插件主要是用于将入口中所有的chunk，移到独立的分离的css文件中
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+// 引入optimize-css-assets-webpack-plugin插件
+// 这个插件主要是用于压缩css模块的
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+// 引入uglifyjs-webpack-plugin插件
+// 这个插件主要是用于压缩js文件的
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// 引入用于生产或测试环境的一些基本变量
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
+// 合并公共配置和生产环境独有的配置并返回一个用于生产环境的webpack配置文件
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
+      // 在生产环境中使用extract选项，这样就会把thunk中的css代码抽离到一份独立的css文件中去
       extract: true,
       usePostCSS: true
     })
   },
+  //配置生产环境使用的source map的形式。在这里，生产环境使用的是#source map的形式
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
+    //build所产生的文件的存放的文件夹地址
     path: config.build.assetsRoot,
+    //
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -48,7 +71,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
+      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true,
     }),
