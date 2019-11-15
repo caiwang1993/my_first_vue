@@ -22,7 +22,7 @@ module.exports = {
     //开发时的访问域名。可以通过环境变量自己设置
     host: 'localhost', // can be overwritten by process.env.HOST
     //开发时的端口，可以通过环境变量port设定。如果端口被占用了会随机分配一个未被使用的端口号
-    port: 8084, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+//    port: 8084, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     //是否自动打开浏览器
     autoOpenBrowser: false,
     //在浏览器里是否展示错误蒙层
