@@ -17,14 +17,32 @@ module.exports = {
     assetsPublicPath: '/',
     //需要使用proxyTable代理的 接口（可跨域）
     proxyTable: {},
-
+    context: [ //代理路径
+      '/shopping',
+      '/ugc',
+      '/v1',
+      '/v2',
+      '/v3',
+      '/v4',
+      '/bos',
+      '/member',
+      '/promotion',
+      '/eus',
+      '/payapi',
+      '/admin',
+      '/statis',
+      '/img',
+    ],
     // Various Dev Server settings
     //开发时的访问域名。可以通过环境变量自己设置
     host: 'localhost', // can be overwritten by process.env.HOST
     //开发时的端口，可以通过环境变量port设定。如果端口被占用了会随机分配一个未被使用的端口号
-//    port: 8084, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+
+    //env: require('./dev.env'),
+
+     port: 8084, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     //是否自动打开浏览器
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     //在浏览器里是否展示错误蒙层
     errorOverlay: true,
     //是否展示错误的通知
@@ -59,7 +77,7 @@ module.exports = {
     //指定是否通过在文件名称后面添加一个查询字符串来创建source map的缓存
     cacheBusting: true,
     //关闭css的source map
-    cssSourceMap: true
+    cssSourceMap: false
   },
 
   build: {
