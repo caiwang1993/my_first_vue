@@ -16,26 +16,17 @@ module.exports = {
     //编译发布的跟目录，可配置成资源服务器域名或cdn域名
     assetsPublicPath: '/',
     //需要使用proxyTable代理的 接口（可跨域）
-    proxyTable: {},
-    context: [ //代理路径
-      '/shopping',
-      '/ugc',
-      '/v1',
-      '/v2',
-      '/v3',
-      '/v4',
-      '/bos',
-      '/member',
-      '/promotion',
-      '/eus',
-      '/payapi',
-      '/admin',
-      '/statis',
-      '/img',
-    ],
+    proxyTable: {
+      '/': {
+        target: 'http://elm.cangdu.org', // 接口的域名
+        // secure: false,  // 如果是https接口，需要配置这个参数
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+
+      }
+    },
     // Various Dev Server settings
     //开发时的访问域名。可以通过环境变量自己设置
-    host: 'localhost', // can be overwritten by process.env.HOST
+   //host: 'localhost', // can be overwritten by process.env.HOST
     //开发时的端口，可以通过环境变量port设定。如果端口被占用了会随机分配一个未被使用的端口号
 
     //env: require('./dev.env'),
@@ -57,7 +48,7 @@ module.exports = {
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
     //是否使用Eslint检查代码
-    useEslint: true,
+    useEslint: false,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     //如果设置为true，在浏览器中，eslint的错误和警告会以蒙层的方式展示

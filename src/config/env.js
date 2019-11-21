@@ -9,15 +9,15 @@
  * baseImgPath:图片存放地址
  */
 
-let baseUrl='//elm.cangdu.org';
+let baseUrl='';
 let routerMode='hash';
 let baseImgPath;
 
-if (process.env.NODE_ENV == 'development') {
+if(process.env.NODE_ENV == 'development'){
   baseUrl = '';
   baseImgPath = '/img/';
-}else{
-  baseUrl = '//elm.cangdu.org';
+}else {
+  baseUrl='//elm.cangdu.org';
   baseImgPath = '//elm.cangdu.org/img/';
 }
 
