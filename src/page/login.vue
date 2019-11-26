@@ -96,30 +96,25 @@
     mounted(){
       this.showLogin = true;
       if (!this.adminInfo.id) {
-          console.log("this.getAdminData():"+this.getAdminData());
         this.getAdminData()
       }
-      console.log("adminInfo：" + this.adminInfo)
     },
     //created为html加载完成之前执行。执行顺序：父组件-子组件
     created(){
-      console.log(123)
     },
     //计算属性 通过计算属性把数据进行运算
     //当一个组件需要获取多个状态的时候，将这些状态声明为计算属性会有些重复和冗余。
     //为了解决这个问题，我们可以使用mapState辅助函数帮助我们生成计算属性
+    //对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中
     computed: {
       ...mapState(['adminInfo'])
     },
     methods: {
       ...mapActions(['getAdminData']),
       async submitForm(formName) {
-        console.log("this.$refs[formName]:" + this.$refs[formName]);
         this.$refs[formName].validate(async (valid) => {
-            console.log("valid:"+valid)
           if (valid) {
             const res =await login({user_name:this.loginForm.username,password:this.loginForm.password});
-            console.log("res:"+res);
             if(res.status==1){
                 this.$message({
                   type:'success',
@@ -150,7 +145,7 @@
               type:'success',
               message:'检查到您之前登陆过，将自动登录'
             });
-            //this.$router.push('manage')
+            this.$router.push('manage')
         }
       }
     }
