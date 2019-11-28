@@ -7,6 +7,10 @@
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-document"></i>数据管理</template>
             <el-menu-item index="userList">用户列表</el-menu-item>
+            <el-menu-item index="shopList">商家列表</el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title"><i class="el-icon-plus"></i>数据添加</template>
           </el-submenu>
         </el-menu>
       </el-col>

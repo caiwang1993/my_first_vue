@@ -152,10 +152,8 @@
   }
 </script>
 
-<style
-  lang="less"
-  scoped>
-  @import '../style/mixin';
+<style lang="less" scoped>
+  @import '../style/mixin.less';
 
   .login_page {
     background-color: #324057;

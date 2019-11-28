@@ -6,6 +6,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const webpack=require("webpack")
 //生成相对于根目录的绝对路径
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -52,7 +53,7 @@ module.exports = {
   //配置模块解析时候的一些选项
   resolve: {
     //指定哪些类型的文件可以引用的时候可以省略后缀名
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json','.less'],
     //别名，在引入文件的时候可以使用
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
@@ -148,5 +149,12 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    })
+  ]
 }
