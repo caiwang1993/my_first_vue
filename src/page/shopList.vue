@@ -152,7 +152,8 @@
       },
       async getResturants(){
         const {latitude, longitude} = this.city;
-        const restaurants =await getResturants({latitude:latitude,longitude:longitude,offset:this.offset,limit:this.limit})
+        const restaurants =await getResturants({latitude:latitude,longitude:longitude,offset:this.offset,limit:this.limit});
+        this.tableData = [];
         restaurants.map(item=>{
             let tableData={};
             tableData.id=item.id;

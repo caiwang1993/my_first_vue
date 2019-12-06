@@ -11,6 +11,7 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title"><i class="el-icon-plus"></i>数据添加</template>
+            <el-menu-item index="addGoods">添加商品</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-col>
