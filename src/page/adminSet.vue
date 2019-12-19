@@ -3,32 +3,24 @@
         <head-top></head-top>
         <header class="admin_title">管理员信息</header>
         <div class="admin_set">
-            <ul>
-                <li>
-                    <span>姓名：</span><span>{{adminInfo.user_name}}</span>
-                </li>
-                <li>
-                    <span>注册时间：</span><span>{{adminInfo.create_time}}</span>
-                </li>
-                <li>
-                    <span>管理员权限：</span><span>{{adminInfo.admin}}</span>
-                </li>
-                <li>
-                    <span>管理员 ID：</span><span>{{adminInfo.id}}</span>
-                </li>
-                <li>
-                    <span>更换头像：</span>
-                    <el-upload
-                      class="avatar-uploader"
-                      :action="baseUrl + '/admin/update/avatar/' + adminInfo.id"
-                      :show-file-list="false"
-                      :on-success="uploadImg"
-                      :before-upload="beforeImgUpload">
-                      <img v-if="adminInfo.avatar" :src="baseImgPath + adminInfo.avatar" class="avatar">
-                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                    </el-upload>
-                </li>    
-            </ul>
+            <p> 姓名:  {{adminInfo.user_name}}</p>
+          <p> 创建时间:  {{adminInfo.create_time}}</p>
+          <p> 管理员权限:  {{adminInfo.admin}}</p>
+          <p> 管理员ID:  {{adminInfo.id}}</p>
+          <p> 更换头像:
+            <el-upload
+              :action="baseUrl+ '/admin/update/avatar/' + adminInfo.id"
+              class="avatar-uploader"
+              :show-file-list="false"
+              :on-success="uploadImg"
+              :before-upload="beforeImgUpload">
+              <img v-if="adminInfo.avatar" :src="baseImgPath+adminInfo.avatar" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </p>
+          <div style="width: 100%;text-align: center;margin: 20px 0">
+            <el-button type="primary">提交</el-button>
+          </div>
         </div>
     </div>
 </template>
@@ -37,6 +29,7 @@
 	import headTop from '../components/headTop'
     import {mapState} from 'vuex'
     import {baseUrl, baseImgPath} from '@/config/env'
+  import ElUpload from "../../node_modules/_element-ui@1.4.13@element-ui/packages/upload/src/index";
 
     export default {
         data(){
@@ -46,10 +39,11 @@
             }
         },
     	components: {
-    		headTop,
+        ElUpload,
+        headTop,
     	},
         computed: {
-            ...mapState(['adminInfo']),
+          ...mapState(['adminInfo']),
         },
         methods: {
             uploadImg(res, file) {
@@ -89,12 +83,19 @@
         min-height: 400px;
         margin: 20px auto 0;
         border-radius: 10px;
+      padding-left: 30px;
         ul > li{
             padding: 20px;
             span{
                 color: #666;
             }
         }
+       p {
+         padding: 20px;
+         color: #666;
+         margin-top: 20px;
+         text-align: left;
+       }
     }
     .admin_title{
         margin-top: 20px;
