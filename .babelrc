@@ -1,4 +1,6 @@
 {
+  //babel 转码器  可将ES6代码转换成ES5,使es6可以在老版本代码执行
+  //.babelrc为babel的配置文件
   "presets": [
     ["env", {
       "modules": false,
